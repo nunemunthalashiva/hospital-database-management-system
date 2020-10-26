@@ -1,0 +1,76 @@
+<html lang="en">
+    <head>
+        <title>display</title>
+        <link rel="stylesheet" href="../static/style.css">
+    </head>
+    <body bgcolor="#e6ffee">
+        <div class="one">
+            <div class="two">
+                <h1>Side Bar</h1>
+                <ul>
+                    <li><a href="{{url_for('index')}}">Index</a></li>
+                    <li class="active"><a href="{{url_for('display')}}">Display</a></li>
+                    <li><a href="{{url_for('update')}}">Update</a></li>
+                    <li><a href="{{url_for('logout')}}">Log out</a></li>
+                </ul>
+            </div>
+            <div class="content" align="center">
+                <div class="topbar">
+                    <h2>Welcome!! You are in Display Page!! </h2>
+                </div>  <br>
+                <div class="contentbar">
+                    <h1>Your Details</h1>    <br>
+                     {% block content %}
+                        <div class="border">
+                            <table class="worddark"><br>
+                                <tr>
+                                    <td><h3>Password:</h3></td>
+                                    <td><h3>{{ patient['passwd'] }}</h3></td>
+                                </tr>
+                                <tr>
+                                  <td> </td>
+                                </tr>
+                                <tr>
+                                    <td><h3>Email ID:</h3></td>
+                                    <td><h3>{{ patient['mail_id'] }}</h3></td>
+                                </tr>
+                                <tr>
+                                  <td> </td>
+                                </tr>
+                                <tr>
+                                    <td><h3>Name</h3></td>
+                                    <td><h3>{{ patient['P_name'] }}</h3></td>
+                                </tr>
+                                <tr>
+                                  <td> </td>
+                                </tr>
+                                <tr>
+                                    <td><h3>age</h3></td>
+                                    <td><h3>{{ patient['age'] }}</h3></td>
+                                </tr>
+                                <tr>
+                                  <td> </td>
+                                </tr>
+                                <tr>
+                                    <td><h3>Blood Group</h3></td>
+                                    <td><h3>{{ patient['blood_group'] }}</h3></td>
+                                </tr>
+                                <tr>
+                                  <td> </td>
+                                </tr>
+                                <tr>
+                                    <td><h3>Sex:</h3></td>
+                                    <td><h3>{{ patient['sex'] }}</h3></td>
+                                </tr>
+                                <tr>
+                                  <td> </td>
+                                </tr>
+                            </table>
+                        </div>
+                    {% endblock %}
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>
