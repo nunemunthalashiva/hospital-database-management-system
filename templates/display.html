@@ -8,59 +8,58 @@
             <div class="two">
                 <h1>Side Bar</h1>
                 <ul>
+                    <li><a href="{{url_for('makeappointment')}}"> Make appointment</a></li>
                     <li><a href="{{url_for('index')}}">Index</a></li>
                     <li class="active"><a href="{{url_for('display')}}">Display</a></li>
                     <li><a href="{{url_for('update')}}">Update</a></li>
+                    <li><a href="{{url_for('appointments')}}">My appointments</a></li>
                     <li><a href="{{url_for('logout')}}">Log out</a></li>
                 </ul>
             </div>
             <div class="content" align="center">
                 <div class="topbar">
-                    <h2>Welcome!! You are in Display Page!! </h2>
+                    <h1>Welcome!! {{patient['P_name']}} wear a mask </h1>
                 </div>  <br>
                 <div class="contentbar">
                     <h1>Your Details</h1>    <br>
                      {% block content %}
                         <div class="border">
                             <table class="worddark"><br>
+                                
                                 <tr>
-                                    <td><h3>Password:</h3></td>
-                                    <td><h3>{{ patient['passwd'] }}</h3></td>
+                                  <td> </td>
+                                </tr>
+                                <tr>
+                                    <td><h2>Email ID: </h2></td>
+                                    <td><h2>{{ patient['mail_id'] }}</h2></td>
                                 </tr>
                                 <tr>
                                   <td> </td>
                                 </tr>
                                 <tr>
-                                    <td><h3>Email ID:</h3></td>
-                                    <td><h3>{{ patient['mail_id'] }}</h3></td>
+                                    <td><h2>Name </h2></td>
+                                    <td><h2>{{ patient['P_name'] }}</h2></td>
                                 </tr>
                                 <tr>
                                   <td> </td>
                                 </tr>
                                 <tr>
-                                    <td><h3>Name</h3></td>
-                                    <td><h3>{{ patient['P_name'] }}</h3></td>
+                                    <td><h2>age </h2></td>
+                                    <td><h2>{{ patient['age'] }}</h2></td>
                                 </tr>
                                 <tr>
                                   <td> </td>
                                 </tr>
                                 <tr>
-                                    <td><h3>age</h3></td>
-                                    <td><h3>{{ patient['age'] }}</h3></td>
+                                    <td><h2>Blood Group  </h2></td>
+                                    <td><h2>{{ patient['blood_group'] }}</h2></td>
                                 </tr>
                                 <tr>
                                   <td> </td>
                                 </tr>
                                 <tr>
-                                    <td><h3>Blood Group</h3></td>
-                                    <td><h3>{{ patient['blood_group'] }}</h3></td>
-                                </tr>
-                                <tr>
-                                  <td> </td>
-                                </tr>
-                                <tr>
-                                    <td><h3>Sex:</h3></td>
-                                    <td><h3>{{ patient['sex'] }}</h3></td>
+                                    <td><h2>Sex: </h2></td>
+                                    <td><h2>{{ patient['sex'] }}</h2></td>
                                 </tr>
                                 <tr>
                                   <td> </td>

@@ -1,0 +1,37 @@
+<html lang="en">
+    <head>
+        <title>update</title>
+        <link rel="stylesheet" href="../static/style.css">
+    </head>
+    <body bgcolor="#ffffff">
+        <div class="one">
+            <div class="two">
+                <h1>Side Bar</h1>
+                <ul>
+
+                    <li><a href="{{url_for('doctor_index')}}">Index</a></li>
+                    <li><a href="{{url_for('doctor_display')}}">Display</a></li>
+                    <li class="active"><a href="{{url_for('doctor_update')}}">Update</a></li>
+                    <li><a href="{{url_for('doctor_logout')}}">Log out</a></li>
+                </ul>
+            </div>
+            <div class="content" align="center">
+                <div class="topbar">
+                    <h2>Welcome!! You are in Update Page!! </h2>
+                </div><br>
+                <div class="contentbar">
+                  <h1>Fill Your Details to Update</h1><br>
+              <form action="{{ url_for('doctor_update') }}" method="post" autocomplete="off">
+                    <div class="msg">{{ msg }}</div>
+                    <input type="text" name="doctor_id" placeholder="Enter Your  ID" class="textbox" id="doctor_id" required><br><br>
+                    <input type="password" name="passwd" placeholder="Enter Your Password" class="textbox" id="passwd" required><br></br>
+                    <input type="text" name="doctor_name" placeholder="Enter Your name" class="textbox" id="doctor_name" required><br></br>
+                    <input type="date" name="availaible_date" placeholder="Enter Your availaible_date" class="textbox" id="availaible_date" required><br></br>
+                    <input type="submit" class="btn" value="Update">
+              </form>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>

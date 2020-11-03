@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> Login </title>
+        <link rel="stylesheet" href="../static/style.css">
+    </head>
+    <body>
+      <br><br><br>
+        <div class="logincontent" align="center">
+            <div class="logintop">
+                <h1>Login</h1>
+            </div>
+            <br>
+            <div class="loginbottom">
+                <form action="{{ url_for('doctor_login')}}" method="post" autocomplete="off">
+
+
+            <div class="msg">{{ msg }}</div>
+            <input type="text" name="doctor_id" placeholder="Enter Your  ID" class="textbox" id="doctor_id" required><br><br>
+            <input type="password" name="passwd" placeholder="Enter Your Password" class="textbox" id="passwd" required><br><br>
+            <input type="submit" class="btn" value="Login">
+              </form>
+              <br>
+              <br>
+              <p class="worddark">New to this page? <a class="worddark" href="{{ url_for('doctor_register')}}">Register here</a></p>
+            </div>
+        </div>
+    </body>
+</html>

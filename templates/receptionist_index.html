@@ -9,12 +9,10 @@
             <div class="two">
                 <h1>Side Bar</h1>
                 <ul>
-                    <li><a href="{{url_for('makeappointment')}}"> Make appointment</a></li>
-                    <li class="active"><a href="{{url_for('index')}}">Index</a></li>
-                    <li><a href="{{url_for('display')}}">Display</a></li>
-                    <li><a href="{{url_for('update')}}">Update</a></li>
-                    <li><a href="{{url_for('appointments')}}">My appointments</a></li>
-                    <li><a href="{{url_for('logout')}}">Log out</a></li>
+                    <li class="active"><a href="{{url_for('receptionist_index')}}">Index</a></li>
+                    <li><a href="{{url_for('receptionist_display')}}">Display</a></li>
+                    <li><a href="{{url_for('receptionist_update')}}">Update</a></li>
+                    <li><a href="{{url_for('receptionist_logout')}}">Log out</a></li>
                 </ul>
             </div>
             <div class="content" align="center">
