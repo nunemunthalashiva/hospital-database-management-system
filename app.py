@@ -144,6 +144,30 @@ def makeappointment():
             msg = 'appointment failed please rebook again!'
     return render_template('makeappointment.html', msg = msg)
 
+@app.route('/donation',methods=['GET','POST'])
+def donation():
+    msg=''
+    if request.method=='POST' and 'mail_id' in request.form and 'donation_id' in request.form and 'donation_date' in request.form:
+        conn=mysql.connect()
+        cursor=conn.cursor()
+        mail_id=request.form['mail_id']
+        donation_id=request.form['donation_id']
+        donation_date=request.form['donation_date']
+        cursor.execute('SELECT * from donate where mail_id= % s and donation_id= % s and donation_date = % s',(mail_id,donation_date,donation_id))
+        donation=cursor.fetchone()
+        if donation:
+            msg='Hey you already signedup for donation'
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', mail_id):
+            msg = 'Invalid email address !'
+        else:
+            cursor.execute('INSERT into donate values(%s,%s,%s)',(mail_id,donation_date,donation_date))
+            conn.commit()
+            msg='Thanks for your generosity'
+            return redirect(url_for('index'))
+    else:
+        msg="Sorry please check your details before submitting"
+        return render_template('donation.html',msg=msg)
+
 @app.route('/receptionist_login',methods=['GET','POST'])
 def receptionist_login():
     msg=''
@@ -233,6 +257,36 @@ def receptionist_update():
             msg = 'Please fill out the form !'
         return render_template("receptionist_update.html", msg = msg)
     return redirect(url_for('receptionist_login'))
+
+
+@app.route('/allocate_rooms',methods=['GET','POST'])
+def allocate_rooms():
+    msg=''
+    if 'loggedin' in session:
+        if request.method=='POST' and 'mail_id' in request.form and 'room_no' in request.form and 'block_no' in request.form  and'date_in' in request.form and 'date_out' in request.form:
+            conn=mysql.connect
+            cursor=conn.cursor()
+            mail_id=request.form['mail_id']
+            room_no=request.form['room_no']
+            block_no=request.form['block_no']
+            date_in=request.form['date_in']
+            date_out=request.form['date_out']
+            cursor.execute('SELECT * from bookings where mail_id= % s and date_in = %s',(mail_id,date_in,))
+            bookings = cursor.fetchone()
+            if bookings:
+                msg = 'You already booked your appointment !'
+            elif not re.match(r'[^@]+@[^@]+\.[^@]+', mail_id):
+                msg = 'Invalid email address !'
+            else:
+                cursor.execute('INSERT INTO bookings(mail_id, room_no, block_no,date_in,date_out) VALUES (% s, % s, % s,% s,% s)', (mail_id, room_no, block_no,date_in,date_out))
+                conn.commit()
+                msg = 'You have successfully booked room for the patient !'
+                return redirect(url_for('receptionist_index'))
+        else:
+            msg = 'Please fill out the form !'
+            return render_template('allocate_rooms.html', msg = msg)
+
+
 
 @app.route('/doctor_login',methods=['GET','POST'])
 def doctor_login():

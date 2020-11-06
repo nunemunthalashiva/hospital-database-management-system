@@ -1,0 +1,15 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>donation</title>
+</head>
+<body>
+  <div class="msg">{{msg}}</div>
+  <form action="{{url_for('donation')}}" method="POST" autocomplete="OFF">
+        <input type="email" name="mail_id" placeholder="enter mail_id" required><br>
+        <input type="text" name="donation_id" placeholder="enter donation_id" required><br>
+
+        <input type="date" name="donation_date" placeholder="enter donation_date" required><br>
+        <input type="submit" value="submit">
+  </form>
+</body>
