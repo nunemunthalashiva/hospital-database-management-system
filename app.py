@@ -147,26 +147,37 @@ def makeappointment():
 @app.route('/donation',methods=['GET','POST'])
 def donation():
     msg=''
-    if request.method=='POST' and 'mail_id' in request.form and 'donation_id' in request.form and 'donation_date' in request.form:
-        conn=mysql.connect()
-        cursor=conn.cursor()
-        mail_id=request.form['mail_id']
-        donation_id=request.form['donation_id']
-        donation_date=request.form['donation_date']
-        cursor.execute('SELECT * from donate where mail_id= % s and donation_id= % s and donation_date = % s',(mail_id,donation_date,donation_id))
-        donation=cursor.fetchone()
-        if donation:
-            msg='Hey you already signedup for donation'
-        elif not re.match(r'[^@]+@[^@]+\.[^@]+', mail_id):
-            msg = 'Invalid email address !'
+    if 'loggedin' in session:
+        if request.method=='POST' and 'mail_id' in request.form and 'donation_id' in request.form and 'donation_date' in request.form:
+            conn=mysql.connect
+            cursor=conn.cursor()
+            mail_id=request.form['mail_id']
+            donation_id=request.form['donation_id']
+            donation_date=request.form['donation_date']
+            cursor.execute('SELECT * from donate where mail_id= % s and donation_id= % s and donation_date = % s',(mail_id,donation_id,donation_date))
+            donation=cursor.fetchone()
+            if donation:
+                msg='Hey you already signedup for donation'
+            elif not re.match(r'[^@]+@[^@]+\.[^@]+', mail_id):
+                msg = 'Invalid email address !'
+            else:
+                cursor.execute('INSERT into donate values(%s,%s,%s)',(session['mail_id'],donation_id,donation_date))
+                conn.commit()
+                msg='Thanks for your generosity'
+                return redirect(url_for('index'))
         else:
-            cursor.execute('INSERT into donate values(%s,%s,%s)',(mail_id,donation_date,donation_date))
-            conn.commit()
-            msg='Thanks for your generosity'
-            return redirect(url_for('index'))
-    else:
-        msg="Sorry please check your details before submitting"
-        return render_template('donation.html',msg=msg)
+            msg="Sorry please check your details before submitting"
+    return render_template('donation.html',msg=msg)
+
+
+
+@app.route('/receptionist_logout')
+def receptionist_logout():
+    session.pop('loggedin', None)
+    session.pop('mail_id', None)
+    return redirect(url_for('receptionist_login'))
+
+@app.route('/receptionist_register', methods =['GET','POST'])
 
 @app.route('/receptionist_login',methods=['GET','POST'])
 def receptionist_login():
@@ -185,15 +196,6 @@ def receptionist_login():
         else:
             msg = 'Incorrect username / password !'
     return render_template('receptionist_login.html', msg = msg)
-
-@app.route('/receptionist_logout')
-def receptionist_logout():
-    session.pop('loggedin', None)
-    session.pop('mail_id', None)
-    return redirect(url_for('receptionist_login'))
-
-@app.route('/receptionist_register', methods =['GET','POST'])
-
 def receptionist_register():
     msg = ''
     if request.method == 'POST' and 'mail_id' in request.form and 'passwd' in request.form and 'receptionist_name' in request.form :
@@ -258,6 +260,29 @@ def receptionist_update():
         return render_template("receptionist_update.html", msg = msg)
     return redirect(url_for('receptionist_login'))
 
+
+@app.route('/nurse_info',methods=['GET','POST'])
+def nurse_info():
+    msg=''
+    if 'loggedin' in session:
+        if request.method=='POST' and 'nurse_id' in request.form and 'nurse_name' in request.form and 'phone_number' in request.form:
+            conn=mysql.connect
+            cursor=conn.cursor()
+            nurse_id=request.form['nurse_id']
+            nurse_name=request.form['nurse_name']
+            phone_number=request.form['phone_number']
+            cursor.execute('SELECT * from nurse where nurse_id = % s',(nurse_id,))
+            nurse=cursor.fetchone()
+            if nurse:
+                msg="Nurse account already exists"
+            else:
+                cursor.execute('INSERT into nurse values(%s,%s,%s)',(nurse_id,nurse_name,phone_number))
+                conn.commit()
+                msg="successfully nurse has registered"
+                return render_template('receptionist_index.html',msg=msg)
+    else:
+        msg = 'Please fill out the form !'
+    return render_template('nurse_info.html', msg = msg)
 
 @app.route('/allocate_rooms',methods=['GET','POST'])
 def allocate_rooms():

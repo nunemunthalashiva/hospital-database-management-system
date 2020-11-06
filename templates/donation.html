@@ -3,7 +3,20 @@
   <meta charset="utf-8">
   <title>donation</title>
 </head>
-<body>
+<body bgcolor="#ffffff">
+    <div class="one">
+        <div class="two">
+            <h1>Side Bar</h1>
+            <ul>
+                <li><a href="{{url_for('makeappointment')}}"> Make appointment</a></li>
+                <li><a href="{{url_for('index')}}">Index</a></li>
+                <li><a href="{{url_for('display')}}">Display</a></li>
+                <li class="active"><a href="{{url_for('update')}}">Update</a></li>
+                <li><a href="{{url_for('appointments')}}">My appointments</a></li>
+                <li class="active"><a href="{{url_for('donation')}}">Donate here</li>
+                <li><a href="{{url_for('logout')}}">Log out</a></li>
+            </ul>
+        </div>
   <div class="msg">{{msg}}</div>
   <form action="{{url_for('donation')}}" method="POST" autocomplete="OFF">
         <input type="email" name="mail_id" placeholder="enter mail_id" required><br>

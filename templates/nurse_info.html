@@ -1,0 +1,25 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>nurse_info</title>
+</head>
+<body bgcolor="#e6ffee">
+  <div class="one">
+      <div class="two">
+          <h1>Side Bar</h1>
+          <ul>
+              <li><a href="{{url_for('receptionist_index')}}">Index</a></li>
+              <li><a href="{{url_for('receptionist_display')}}">Display</a></li>
+              <li><a href="{{url_for('receptionist_update')}}">Update</a></li>
+              <li class><a href="{{url_for('allocate_rooms')}}">Room booking</a></li>
+              <li class="active"><a href="{{url_for('nurse_info')}}">Nurse info</a></li>
+              <li><a href="{{url_for('receptionist_logout')}}">Log out</a></li>
+          </ul>
+      </div>
+  <form action="{{ url_for('nurse_info')}}" method="post" autocomplete="off">
+    <input type="text" name="nurse_id" placeholder="enter nurse_id" class="textbox" id="nurse_id" required><br>
+    <input type="text" name="nurse_name" placeholder="enter nurse_name" class="textbox" id="nurse_name" required><br>
+    <input type="text" name="phone_number" placeholder="enter phone_no" class="textbox" id="phone_number" required><br>
+    <input type="submit" class="btn" value="register">
+  </form>
+</body>
