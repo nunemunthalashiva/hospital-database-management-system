@@ -177,8 +177,6 @@ def receptionist_logout():
     session.pop('mail_id', None)
     return redirect(url_for('receptionist_login'))
 
-@app.route('/receptionist_register', methods =['GET','POST'])
-
 @app.route('/receptionist_login',methods=['GET','POST'])
 def receptionist_login():
     msg=''
@@ -196,6 +194,8 @@ def receptionist_login():
         else:
             msg = 'Incorrect username / password !'
     return render_template('receptionist_login.html', msg = msg)
+
+@app.route('/receptionist_register', methods =['GET','POST'])
 def receptionist_register():
     msg = ''
     if request.method == 'POST' and 'mail_id' in request.form and 'passwd' in request.form and 'receptionist_name' in request.form :
@@ -218,6 +218,27 @@ def receptionist_register():
     else:
         msg = 'Please fill out the form !'
     return render_template('receptionist_register.html', msg = msg)
+
+@app.route("/takes",methods=["GET","POST"])
+def takes():
+    msg=''
+    if 'loggedin' in session:
+        if request.method=='POST' and 'mail_id' in request.form and 'medicine_id' in request.form and 'quantity' in request.form and 'takes_date' in request.form:
+            conn=mysql.connect
+            cursor=conn.cursor()
+            mail_id=request.form['mail_id']
+            medicine_id=request.form['medicine_id']
+            quantity=request.form['quantity']
+            takes_date=request.form['takes_date']
+            cursor.execute('INSERT into takes values(%s,%s,%s,%s)',(mail_id,medicine_id,quantity,takes_date))
+            conn.commit()
+            msg="successfully booked medicines"
+            return render_template('receptionist_index.html',msg=msg)
+        else:
+            msg='please fill out the form'
+    return render_template('takes.html', msg = msg)
+
+
 
 @app.route("/receptionist_index")
 def receptionist_index():

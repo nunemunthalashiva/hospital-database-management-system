@@ -1,0 +1,32 @@
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>medicines</title>
+</head>
+<body bgcolor="#e6ffee">
+    <div class="one">
+        <div class="two">
+            <h1>Side Bar</h1>
+            <ul>
+                <li><a href="{{url_for('receptionist_index')}}">Index</a></li>
+                <li><a href="{{url_for('receptionist_display')}}">Display</a></li>
+                <li><a href="{{url_for('receptionist_update')}}">Update</a></li>
+                <li><a href="{{url_for('allocate_rooms')}}">Room booking</a></li>
+                              <li><a href="{{url_for('nurse_info')}}">Nurse info</a></li>
+                              <li  class="active"><a href="{{url_for('takes')}}">Book Medicines</a>
+                <li><a href="{{url_for('receptionist_logout')}}">Log out</a></li>
+            </ul>
+        </div>
+      <h2>Please enter your deatails to book</h2>
+<form action="{{url_for('takes')}}" method="POST" autocomplete="OFF">
+  <div class="msg">{{msg}}</div>
+    <input type="email" name="mail_id" placeholder="enter mail_id" class="textbox" id="" required><br>
+    <input type="text" name="medicine_id" placeholder="enter medicine_id" class="textbox" required><br>
+
+    <input type="text" name="quantity" placeholder="enter quantity" class="textbox" required><br>
+    <input type="date" name="takes_date" placeholder="enter the date" required><br>
+    <input type="submit" class=btn value="book now">
+</form>
+</body>
+</html>
