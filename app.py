@@ -15,10 +15,14 @@ mysql = MySQL(app)
 
 
 @app.route("/")
-@app.route("/index")
+@app.route("/home")
+def home():
+    return render_template("home.html")
+
+
+@app.route("/index",methods=['GET','POST'])
 def index():
     return render_template("index.html")
-
 
 @app.route('/login',methods=['GET','POST'])
 
@@ -37,6 +41,7 @@ def login():
             return render_template('index.html', msg = msg)
         else:
             msg = 'Incorrect username / password !'
+        return render_template('home.html')
     return render_template('login.html', msg = msg)
 
 
@@ -44,7 +49,7 @@ def login():
 def logout():
    session.pop('loggedin', None)
    session.pop('mail_id', None)
-   return redirect(url_for('index'))
+   return redirect(url_for('home'))
 
 
 @app.route('/register', methods =['GET', 'POST'])
@@ -69,7 +74,7 @@ def register():
             cursor.execute('INSERT INTO patient VALUES (% s, % s, % s, % s, % s, % s)', (mail_id, passwd, P_name, age, blood_group, sex))
             conn.commit()
             msg = 'You have successfully registered !'
-            return redirect(url_for('index'))
+            return redirect(url_for('login'))
     else:
         msg = 'Please fill out the form !'
     return render_template('register.html', msg = msg)
@@ -176,7 +181,7 @@ def donation():
 def receptionist_logout():
     session.pop('loggedin', None)
     session.pop('mail_id', None)
-    return redirect(url_for('index'))
+    return redirect(url_for('home'))
 
 @app.route('/receptionist_login',methods=['GET','POST'])
 def receptionist_login():
@@ -220,6 +225,25 @@ def receptionist_register():
         msg = 'Please fill out the form !'
     return render_template('receptionist_register.html', msg = msg)
 
+@app.route("/update_tests" , methods=["GET","POST"])
+def update_tests():
+    msg=" "
+    if 'loggedin' in session:
+        if request.method=='POST' and 'mail_id' in request.form and 'test_id' in request.form and 'test_date' in request.form and 'test_analysis' in request.form:
+            conn=mysql.connect
+            cursor=conn.cursor()
+            mail_id=request.form['mail_id']
+            test_id=request.form['test_id']
+            test_analysis=request.form['test_analysis']
+            test_date=request.form['test_date']
+            cursor.execute('INSERT INTO test_descrp values(%s,%s,%s,%s)',(mail_id,test_id,test_date,test_analysis))
+            conn.commit()
+            msg="Successfully updated"
+            return render_template('receptionist_index.html',msg=msg)
+        else:
+            msg='please fill out the form'
+    return render_template('update_tests.html', msg = msg)
+
 @app.route("/takes",methods=["GET","POST"])
 def takes():
     msg=''
@@ -239,7 +263,22 @@ def takes():
             msg='please fill out the form'
     return render_template('takes.html', msg = msg)
 
-
+@app.route("/update_record",methods=['GET','POST'])
+def update_record():
+    if 'loggedin' in session:
+        if request.method=='POST' and 'mail_id' in request.form and 'record_id' in request.form and 'record_analysis' in request.form:
+            conn=mysql.connect
+            cursor=conn.cursor()
+            mail_id=request.form['mail_id']
+            record_id=request.form['record_id']
+            record_analysis=request.form['record_analysis']
+            cursor.execute('INSERT into record values(%s,%s,%s)',(mail_id,record_id,recprd_analysis))
+            conn.commit()
+            msg="successfully booked medicines"
+            return render_template('receptionist_index.html',msg=msg)
+        else:
+            msg='please fill out the form'
+    return render_template('update_record.html', msg = msg)        
 
 @app.route("/receptionist_index")
 def receptionist_index():

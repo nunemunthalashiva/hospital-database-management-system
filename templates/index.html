@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <title>IITI-HEALTH</title>
+    <title>Index Page</title>
     <link rel="stylesheet" href="../static/patient_home_page.css">
   </head>
   <body style="background-image:url('../static/hospital2.jpg')">
@@ -20,14 +20,9 @@
         <li><a href="{{url_for('logout')}}">Logout</a></li>
       </ul></li>
       <li><a href="#">Contacts</a></li>
-      <li><a href="#">Login</a>
-        <ul>
-          <li><a href="{{url_for('login')}}">Patient</a></li>
-          <li><a href="{{url_for('receptionist_login')}}">Receptionist</a></li>
-          <li><a href="{{ url_for('doctor_login')}}">Doctor</a></li>
-        </ul></li>
-    </ul>
     <div class="msg">{{ msg }}</div>
+    <br>
+
     <div id="Appointment-box"><a href="{{url_for('makeappointment')}}">Make An Appointment</a></div>
     <div id="Appointment_box"><a href="{{url_for('appointments')}}">My Appointment</a></div>
   </body>

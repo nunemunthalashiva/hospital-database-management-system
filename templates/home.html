@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>IITI-HEALTH</title>
+    <link rel="stylesheet" href="../static/patient_home_page.css">
+  </head>
+  <body style="background-image:url('../static/hospital2.jpg')">
+    <div id="top-border">IITI-HEALTH</div>
+    <ul id="unordered-list-1">
+      <li></li>
+      <li></li>
+      <li><a href="#">About-us</a></li>
+      <li><a href="{{url_for('donation')}}">Donation</a>
+    </li>
+      <li><a href="doctor's_data.html">Doctors-profiles</a></li>
+      <li><a href="#">My account</a>
+      <ul>
+        <li><a href="{{url_for('display')}}">Display</a></li>
+        <li><a href="{{url_for('update')}}">Update</a></li>
+        <li><a href="{{url_for('logout')}}">Logout</a></li>
+      </ul></li>
+      <li><a href="#">Contacts</a></li>
+      <li><a href="#">Login</a>
+        <ul>
+          <li><a href="{{url_for('login')}}">Patient</a></li>
+          <li><a href="{{url_for('receptionist_login')}}">Receptionist</a></li>
+          <li><a href="{{ url_for('doctor_login')}}">Doctor</a></li>
+        </ul></li>
+    </ul>
+    <br>
+    <br>
+    <div class="msg">{{ msg }}</div>
+    <div id="Appointment-box"><a href="{{url_for('makeappointment')}}">Make An Appointment</a></div>
+    <div id="Appointment_box"><a href="{{url_for('appointments')}}">My Appointment</a></div>
+  </body>
+</html>
