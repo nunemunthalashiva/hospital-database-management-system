@@ -13,7 +13,12 @@ app.config['MYSQL_DB'] = 'test'
 
 mysql = MySQL(app)
 
-@app.route('/')
+
+@app.route("/")
+@app.route("/index")
+def index():
+    return render_template("index.html")
+
 
 @app.route('/login',methods=['GET','POST'])
 
@@ -39,7 +44,7 @@ def login():
 def logout():
    session.pop('loggedin', None)
    session.pop('mail_id', None)
-   return redirect(url_for('login'))
+   return redirect(url_for('index'))
 
 
 @app.route('/register', methods =['GET', 'POST'])
@@ -69,11 +74,6 @@ def register():
         msg = 'Please fill out the form !'
     return render_template('register.html', msg = msg)
 
-@app.route("/index")
-def index():
-    if 'loggedin' in session:
-        return render_template("index.html")
-    return redirect(url_for('login'))
 
 
 @app.route("/display")
@@ -142,7 +142,8 @@ def makeappointment():
                 return redirect(url_for('index'))
         else:
             msg = 'appointment failed please rebook again!'
-    return render_template('makeappointment.html', msg = msg)
+        return render_template('makeappointment.html', msg = msg)
+    return redirect(url_for('login'))
 
 @app.route('/donation',methods=['GET','POST'])
 def donation():
@@ -167,15 +168,15 @@ def donation():
                 return redirect(url_for('index'))
         else:
             msg="Sorry please check your details before submitting"
-    return render_template('donation.html',msg=msg)
-
+        return render_template('donation.html',msg=msg)
+    return redirect(url_for('login'))
 
 
 @app.route('/receptionist_logout')
 def receptionist_logout():
     session.pop('loggedin', None)
     session.pop('mail_id', None)
-    return redirect(url_for('receptionist_login'))
+    return redirect(url_for('index'))
 
 @app.route('/receptionist_login',methods=['GET','POST'])
 def receptionist_login():

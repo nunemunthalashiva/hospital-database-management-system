@@ -1,0 +1,13 @@
+body{
+  background-color: #429FFF;
+  color:white;
+  font-size: 25px;
+}
+#main_box_1{
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+b{
+  color:#000000;
+  font-size: 20px;
+}

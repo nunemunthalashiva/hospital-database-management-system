@@ -1,0 +1,80 @@
+*{
+  padding:0px;
+  margin:0px;
+}
+body{
+  background-image:url("hospital2.jpg");
+  background-size:cover;
+}
+#top-border{
+  height: 70px;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 40px;
+  background-color: #1338B8;
+  color: #FFFFFF;
+}
+
+#unordered-list-1 li{
+  height:40px;
+  width:160px;
+  list-style-type: none;
+  background-color: #FFFFFF;
+  line-height: 40px;
+  border:3px solid white;
+  text-align: center;
+  float:left;
+}
+#unordered-list-1 li a{
+  text-decoration: none;
+  color:#1338B8;
+  font-size:20px;
+  display: block;
+}
+#unordered-list-1 li a:hover{
+  color:white;
+  background-color: #1338B8;
+}
+#unordered-list-1 li ul li{
+  display:none;
+}
+#unordered-list-1 li:hover ul li{
+  display:block;
+}
+#Appointment-box {
+  width: 400px;
+  margin-top: 420px;
+  margin-left: 150px;
+  text-align: center;
+}
+#Appointment-box a{
+    height: 70px;
+    line-height: 70px;
+   color:#FFFFFF;
+    background-color:#1338B8;
+  text-decoration: none;
+  font-size: 20px;
+  display: block;
+}
+#Appointment-box a:hover{
+    background-color: #EBEDF0;
+    color:#1338B8;
+}
+#Appointment_box {
+  width: 400px;
+  margin-left: 150px;
+  text-align: center;
+}
+#Appointment_box a{
+    height: 70px;
+    line-height: 70px;
+   color:#FFFFFF;
+    background-color:#1338B8;
+  text-decoration: none;
+  font-size: 20px;
+  display: block;
+}
+#Appointment_box a:hover{
+    background-color: #EBEDF0;
+    color:#1338B8;
+}
