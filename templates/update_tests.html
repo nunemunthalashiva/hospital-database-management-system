@@ -2,13 +2,23 @@
 <head>
   <meta charset="utf-8">
   <title>update-tests</title>
+  <link rel="stylesheet" href="../static/style.css">
 </head>
-<body>
+<body style="background-image:url('../static/hospit.jpg')">
+  <div class="one">
+      <div class="content" align="center">
+          <div class="contentbar">
+            <h1>Fill Your Details to Update</h1><br>
   <form action="{{url_for('update_tests')}}" method="POST" autocomplete="OFF">
-      <input type="email" name="mail_id" placeholder="enter mail_id" required><br>
-      <input type="text" name="test_id" placeholder="enter test_id" required><br>
-      <input type="date" name="test_date" placeholder="enter test_date" required><br>
-      <input type="text" name="test_analysis" placeholder="enter test_analysis" required><br>
+    <div class="msg">{{ msg }}</div>
+      <input type="email" name="mail_id" placeholder="enter mail_id" class="textbox"  required><br>
+      <input type="text" name="test_id" placeholder="enter test_id" class="textbox"  required><br>
+      <input type="date" name="test_date" placeholder="enter test_date" class="textbox"  required><br>
+      <input type="text" name="test_analysis" placeholder="enter test_analysis" class="textbox"  required><br><br>
       <input type="submit" class="btn" value="update">
   </form>
+</div>
+</div>
+</div>
 <body>
+</html>

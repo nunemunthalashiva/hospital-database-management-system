@@ -2,12 +2,22 @@
 <head>
   <meta charset="utf-8">
   <title>update-record</title>
+  <link rel="stylesheet" href="../static/style.css">
 </head>
-<body>
-  <form action="{{url_for('update_record')}}">
-      <input type="email" name="mail_id" placeholder="enter mail_id" required><br>
-      <input type="text" name="record_id" placeholder="enter record_id" required><br>
-      <input type="text" name="record_analysis" placeholder="enter record_analysis" required><br>
-      <input type="submit" value="update">
+<body style="background-image:url('../static/hospit.jpg')">
+  <div class="one">
+      <div class="content" align="center">
+          <div class="contentbar">
+            <h1>Fill Your Details to Update</h1><br>
+  <form action="{{url_for('update_record')}}"  method="post" autocomplete="off">
+    <div class="msg">{{ msg }}</div>
+      <input type="email" name="mail_id" placeholder="enter mail_id" class="textbox" required><br>
+      <input type="text" name="record_id" placeholder="enter record_id"class="textbox" required><br>
+      <input type="text" name="record_analysis" placeholder="enter record_analysis"class="textbox" required><br><br>
+      <input type="submit" class="btn"value="update">
   </form>
+</div>
+</div>
+</div>
 <body>
+</html>

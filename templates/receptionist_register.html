@@ -4,7 +4,7 @@
         <title> register </title>
         <link rel="stylesheet" href="../static/style.css">
     </head>
-    <body>
+    <body style="background-image:url('../static/hospit.jpg')">
         <div class="registercontent" align="center">
             <div class="registertop">
                 <h1>Register</h1>
@@ -16,7 +16,7 @@
             <input type="password" name="passwd" placeholder="Enter Your Password" class="textbox" id="passwd" required><br><br>
             <input type="text" name="receptionist_name" placeholder="Enter Your name" class="textbox" id="P_name" required><br><br>
 
-            <input type="submit" class="btn" value="Register"><br>
+            <input type="submit" class="btn" value="Register"><br><br>
               </form>
               <p class="worddark">Already have account? <a class="worddark" href="{{ url_for('receptionist_login')}}">Login here</a></p>
             </div>

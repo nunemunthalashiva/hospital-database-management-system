@@ -4,34 +4,23 @@
   <title>allocate-rooms</title>
   <link rel="stylesheet" href="../static/style.css">
 </head>
-<body bgcolor="#e6ffee">
+<body style="background-image:url('../static/hospit.jpg')">
   <div class="one">
-      <div class="two">
-          <h1>Side Bar</h1>
-          <ul>
-              <li><a href="{{url_for('receptionist_index')}}">Index</a></li>
-              <li><a href="{{url_for('receptionist_display')}}">Display</a></li>
-              <li><a href="{{url_for('receptionist_update')}}">Update</a></li>
-              <li class="active"><a href="{{url_for('allocate_rooms')}}">Room booking</a></li>
-                            <li class><a href="{{url_for('nurse_info')}}">Nurse info</a></li>
-                            <li><a href="{{url_for('takes')}}">Book Medicines</a>
-              <li><a href="{{url_for('receptionist_logout')}}">Log out</a></li>
-          </ul>
-      </div>
-<br><br><br>
   <div class="logincontent" align="center">
       <div class="logintop">
           <h1>allocate-rooms</h1>
       </div>
-      <br>
       <div class="loginbottom">
   <form action="{{ url_for('allocate_rooms')}}" method="post" autocomplete="off">
 <div class="msg">{{ msg }}</div>
     <input type="email" name="mail_id" class="textbox" id="mail_id" placeholder="enter mail_id" required><br>
     <input type="text" name="room_no" placeholder="enter room_id" class="textbox" id="room_no" required><br>
     <input type="text" name="block_no" placeholder="enter block_id"class="textbox" id="block_no" required><br>
-    date in:<input type="date" name="date_in" placeholder="enter date_in" id="date_in" required><br>
-    date out:<input type="date" name="date_out" placeholder="enter date_out" id="date_out"><br>
+    date in:<input type="date" name="date_in" placeholder="enter date_in" class="textbox" id="date_in" required><br>
+    date out:<input type="date" name="date_out" placeholder="enter date_out" class="textbox" id="date_out"><br>
     <input type="submit" class="btn" value="book">
   </form>
+</div>
+</div>
+</div>
 </body>
