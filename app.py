@@ -8,7 +8,7 @@ app=Flask(__name__)
 app.secret_key = 'your secret key'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'password'
+app.config['MYSQL_PASSWORD'] = 'neekendukuraa@mysql'
 app.config['MYSQL_DB'] = 'test'
 
 mysql = MySQL(app)
@@ -278,7 +278,7 @@ def update_record():
             return render_template('receptionist_index.html',msg=msg)
         else:
             msg='please fill out the form'
-    return render_template('update_record.html', msg = msg)        
+    return render_template('update_record.html', msg = msg)
 
 @app.route("/receptionist_index")
 def receptionist_index():
