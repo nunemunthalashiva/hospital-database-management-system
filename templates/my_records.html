@@ -1,0 +1,26 @@
+<html lang="en">
+    <head>
+        <title>My appointments</title>
+        <link rel="stylesheet" href="../static/style.css">
+    </head>
+    <body style="background-image:url('../static/hospit.jpg')">
+        <div class="one">
+            <div class="content" align="center">
+            <br>
+                <div class="contentbar">
+                    <h1>My records</h1>    <br>
+                     {% block content %}
+                        <div class="border">
+                            <table class="worddark"><br>
+                              {% for rec in record %}
+                                    <li>record id : {{rec['record_id']}}</li>
+                                    <li>record_analysis: {{rec['record_analysis']}}</li><br>
+                              {% endfor %}
+                            </table>
+                        </div>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
