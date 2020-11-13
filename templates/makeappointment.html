@@ -14,7 +14,6 @@
             <div class="registerbottom">
               <form action="{{ url_for('makeappointment') }}" method="post" autocomplete="off">
             <div class="msg">{{ msg }}</div>
-            <input type="email" name="mail_id" placeholder="Enter Your Email ID" class="textbox" id="mail_id" required><br><br>
             <input type="number" name="doctor_id" placeholder="Enter doctor id" class="textbox" id="doctor_id" required><br><br>
             <input type="date" name ="date_appointment" placeholder="Enter the date for appointment" id="date_appointment" required><br><br>
             <input type="submit" class="btn" value="book appointment"><br>

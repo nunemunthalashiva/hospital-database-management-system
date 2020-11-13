@@ -130,13 +130,12 @@ def appointments():
 def makeappointment():
     msg=''
     if 'loggedin' in session:
-        if request.method=='POST' and 'mail_id' in request.form and 'doctor_id' in request.form and 'date_appointment' in request.form:
+        if request.method=='POST' and  'doctor_id' in request.form and 'date_appointment' in request.form:
             conn=mysql.connect
             cursor=conn.cursor()
-            mail_id = request.form['mail_id']
             doctor_id=request.form['doctor_id']
             date_appointment=request.form['date_appointment']
-            cursor.execute('SELECT * FROM appointment WHERE mail_id = %s and date_appointment = %s',(mail_id,date_appointment))
+            cursor.execute('SELECT * FROM appointment WHERE mail_id = %s and date_appointment = %s',(session['mail_id'],date_appointment))
             appointment=cursor.fetchone()
             if appointment:
                 msg="you had already booked an appointment"
@@ -154,18 +153,15 @@ def makeappointment():
 def donation():
     msg=''
     if 'loggedin' in session:
-        if request.method=='POST' and 'mail_id' in request.form and 'donation_id' in request.form and 'donation_date' in request.form:
+        if request.method=='POST' and  'donation_id' in request.form and 'donation_date' in request.form:
             conn=mysql.connect
             cursor=conn.cursor()
-            mail_id=request.form['mail_id']
             donation_id=request.form['donation_id']
             donation_date=request.form['donation_date']
-            cursor.execute('SELECT * from donate where mail_id= % s and donation_id= % s and donation_date = % s',(mail_id,donation_id,donation_date))
+            cursor.execute('SELECT * from donate where mail_id= % s and donation_id= % s and donation_date = % s',(session['mail_id'],donation_id,donation_date))
             donation=cursor.fetchone()
             if donation:
                 msg='Hey you already signedup for donation'
-            elif not re.match(r'[^@]+@[^@]+\.[^@]+', mail_id):
-                msg = 'Invalid email address !'
             else:
                 cursor.execute('INSERT into donate values(%s,%s,%s)',(session['mail_id'],donation_id,donation_date))
                 conn.commit()
@@ -272,7 +268,7 @@ def update_record():
             mail_id=request.form['mail_id']
             record_id=request.form['record_id']
             record_analysis=request.form['record_analysis']
-            cursor.execute('INSERT into record values(%s,%s,%s)',(mail_id,record_id,recprd_analysis))
+            cursor.execute('INSERT into record values(%s,%s,%s)',(mail_id,record_id,record_analysis))
             conn.commit()
             msg="successfully booked medicines"
             return render_template('receptionist_index.html',msg=msg)
@@ -462,6 +458,61 @@ def doctor_update():
         return render_template("doctor_update.html", msg = msg)
     return redirect(url_for('doctor_login'))
 
+
+@app.route("/nurse_alloc",methods=['GET','POST'])
+def nurse_alloc():
+    if 'loggedin' in session:
+        if request.method=='POST' and 'mail_id' in request.form and 'nurse_id' in request.form and 'date_in' in request.form and 'date_out' in request.form:
+            conn=mysql.connect
+            cursor=conn.cursor()
+            mail_id=request.form['mail_id']
+            nurse_id=request.form['nurse_id']
+            date_in=request.form['date_in']
+            date_out=request.form['date_out']
+            cursor.execute('INSERT into nursealloc VALUES(%s,%s,%s,%s,%s)',(session['doctor_id'],nurse_id,mail_id,date_in,date_out))
+            conn.commit()
+            msg="successfully allocated nurse"
+            return render_template('doctor_index.html',msg=msg)
+        else:
+            msg='please fill out the form'
+            return render_template('nurse_alloc.html', msg = msg)
+    return render_template('doctor_login.html')
+@app.route("/my_records",methods=['GET','POST'])
+def my_records():
+    if 'loggedin' in session:
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM record WHERE mail_id = % s', (session['mail_id'], ))
+        record = cursor.fetchall()
+        return render_template("my_records.html", record = record)
+    return redirect(url_for('login'))
+@app.route("/patient_record",methods=['GET','POST'])
+def patient_record():
+    if 'loggedin' in session:
+        if request.method=="POST" and 'mail_id' in request.form:
+            conn=mysql.connect
+            cursor=conn.cursor()
+            mail_id=request.form['mail_id']
+            cursor.execute('SELECT * FROM record WHERE mail_id = % s', (mail_id))
+            record = cursor.fetchall()
+            return render_template("patient_record.html", record = record)
+        else:
+            msg="enter mail id"
+            return render_template("pre_patient_record.html",msg=msg)
+    return render_template('doctor_index.html')
+@app.route("/rec_appointment",methods=['GET','POST'])
+def rec_appointment():
+    if 'loggedin' in session:
+        if request.method=="POST" and 'date_appointment' in request.form:
+            conn=mysql.connect
+            cursor=conn.cursor()
+            date_appointment = request.form['date_appointment']
+            cursor.execute('SELECT * FROM appointment WHERE date_appointment= % s',(date_appointment))
+            appointment=cursor.fetchall()
+            return render_template("rec_appointment.html",appointment=appointment)
+        else:
+            msg='fill the form'
+            return render_template("rec_appointment.html",msg=msg)
+    return redirect(url_for('receptionist_login'))
 
 if __name__ == "__main__":
     app.debug=True

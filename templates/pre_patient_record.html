@@ -1,0 +1,10 @@
+<!doctype html>
+<html>
+<body>
+<form action="{{ url_for('patient_record')}}" method="post" autocomplete="off">
+<div class="msg">{{ msg }}</div>
+<input type="email" name="mail_id" placeholder="Enter patient mail_id" class="textbox" required><br><br>
+<input type="submit" class="btn" value="view-records">
+  </form>
+</body>
+</html>

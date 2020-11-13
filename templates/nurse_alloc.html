@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> allocate </title>
+        <link rel="stylesheet" href="../static/style.css">
+    </head>
+    <body style="background-image:url('../static/hospit.jpg')">
+        <div class="registercontent" align="center">
+            <div class="registertop">
+                <h1>all0cate</h1>
+            </div><br><br>
+            <div class="registerbottom">
+              <form action="{{ url_for('nurse_alloc')}}" method="post" autocomplete="off">
+            <div class="msg">{{ msg }}</div>
+            <input type="email" name="mail_id" placeholder="Enter patient mail_id" class="textbox" id="mail_id" required><br><br>
+          
+            <input type="text" name="nurse_id" placeholder="Enter nurse_id" class="textbox" id="P_name" required><br><br>
+            date_in:<input type="date" name="date_in" placeholder="Enter date_in" class="textbox" id="P_name" required><br><br>
+            date_out:<input type="date" name="date_out" placeholder="Enter date_out" class="textbox" id="P_name" required><br><br>
+            <input type="submit" class="btn" value="allocate"><br><br>
+              </form>
+            </div>
+        </div>
+    </body>
+</html>

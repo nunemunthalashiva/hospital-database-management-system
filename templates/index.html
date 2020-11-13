@@ -13,15 +13,15 @@
       <li><a href="{{url_for('donation')}}">Donation</a>
     </li>
       <li><a href="doctor's_data.html">Doctors-profiles</a></li>
+      <li><a href="{{url_for('my_records')}}">Records</a>
       <li><a href="#">My account</a>
       <ul>
         <li><a href="{{url_for('display')}}">Display</a></li>
         <li><a href="{{url_for('update')}}">Update</a></li>
         <li><a href="{{url_for('logout')}}">Logout</a></li>
       </ul></li>
-      <li><a href="#">Contacts</a></li>
+      <li><a href="#">Contacts</a></li><br>
     <div class="msg">{{ msg }}</div>
-    <br>
 
     <div id="Appointment-box"><a href="{{url_for('makeappointment')}}">Make An Appointment</a></div>
     <div id="Appointment_box"><a href="{{url_for('appointments')}}">My Appointment</a></div>

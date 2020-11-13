@@ -1,29 +1,27 @@
-<html lang="en">
-    <head>
-        <title>index</title>
-        <link rel="stylesheet" href="../static/style.css">
-    </head>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>IITI-HEALTH</title>
+    <link rel="stylesheet" href="../static/patient_home_page.css">
+  </head>
+  <body style="background-image:url('../static/hospital2.jpg')">
+    <div id="top-border">IITI-HEALTH</div>
+    <ul id="unordered-list-1">
+      <li></li>
+      <li></li>
+      <li><a href="#">About-us</a></li>
+      <li><a href="{{url_for('nurse_alloc')}}">Allocate_nurse</a></li>
+      <li><a href="#">Doctors-profiles</a></li>
+      <li><a href="#">My account</a>
+      <ul>
+        <li><a href="{{url_for('doctor_display')}}">Display</a></li>
+        <li><a href="{{url_for('doctor_update')}}">Update</a></li>
+        <li><a href="{{url_for('doctor_logout')}}">Logout</a></li>
+      </ul></li>
+      <li><a href="#">Contacts</a></li>
 
-    <body bgcolor="#e6ffee">
-        <div class="one">
-            <div class="two">
-                <h1>Side Bar</h1>
-                <ul>
-                    <li class="active"><a href="{{url_for('doctor_index')}}">Index</a></li>
-                    <li><a href="{{url_for('doctor_display')}}">Display</a></li>
-                    <li><a href="{{url_for('doctor_update')}}">Update</a></li>
-                    <li><a href="{{url_for('doctor_logout')}}">Log out</a></li>
-                </ul>
-            </div>
-            <div class="content" align="center">
-                <div class="topbar">
-                    <h2>Welcome!! You are in Index Page!! </h2>
-                </div><br>
-                <div class="contentbar">
-                     <div class="msg">{{ msg }}</div>
-                </div>
-
-            </div>
-        </div>
-    </body>
+    </ul>
+    <div class="msg">{{ msg }}</div>
+    <div id="Appointment-box"><a href="pre_patient_record.html">view patient_record</a></div>
+  </body>
 </html>
