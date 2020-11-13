@@ -485,18 +485,31 @@ def my_records():
         record = cursor.fetchall()
         return render_template("my_records.html", record = record)
     return redirect(url_for('login'))
+
+temp1=0
+
 @app.route("/patient_record",methods=['GET','POST'])
+
 def patient_record():
+    if 'loggedin' in session:
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM record WHERE mail_id = % s', (temp1, ))
+        record=cursor.fetchall()
+        return render_template("patient_record.html", record=record)
+    return redirect(url_for('home'))
+
+@app.route("/pre_patient_record",methods=['GET','POST'])
+
+def pre_patient_record():
+    msg=" "
     if 'loggedin' in session:
         if request.method=="POST" and 'mail_id' in request.form:
             conn=mysql.connect
             cursor=conn.cursor()
             mail_id=request.form['mail_id']
-            cursor.execute('SELECT * FROM record WHERE mail_id = % s', (mail_id))
-            record = cursor.fetchall()
-            return render_template("patient_record.html", record = record)
+            temp1=mail_id
+            return redirect(url_for('patient_record'))
         else:
-            msg="enter mail id"
             return render_template("pre_patient_record.html",msg=msg)
     return render_template('doctor_index.html')
 @app.route("/rec_appointment",methods=['GET','POST'])
@@ -513,6 +526,10 @@ def rec_appointment():
             msg='fill the form'
             return render_template("rec_appointment.html",msg=msg)
     return redirect(url_for('receptionist_login'))
+
+@app.route("/doctors_data",methods=['GET','POST'])
+def doctors_data():
+    return render_template('doctors_data.html')
 
 if __name__ == "__main__":
     app.debug=True

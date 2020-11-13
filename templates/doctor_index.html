@@ -11,7 +11,7 @@
       <li></li>
       <li><a href="#">About-us</a></li>
       <li><a href="{{url_for('nurse_alloc')}}">Allocate_nurse</a></li>
-      <li><a href="#">Doctors-profiles</a></li>
+      <li><a href="{{url_for('doctors_data')}}">Doctors-profiles</a></li>
       <li><a href="#">My account</a>
       <ul>
         <li><a href="{{url_for('doctor_display')}}">Display</a></li>
@@ -22,6 +22,6 @@
 
     </ul>
     <div class="msg">{{ msg }}</div>
-    <div id="Appointment-box"><a href="pre_patient_record.html">view patient_record</a></div>
+    <div id="Appointment-box"><a href="{{url_for('pre_patient_record')}}">view patient_record</a></div>
   </body>
 </html>
