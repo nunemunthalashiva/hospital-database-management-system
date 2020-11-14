@@ -140,7 +140,7 @@ def makeappointment():
             if appointment:
                 msg="you had already booked an appointment"
             else:
-                cursor.execute('INSERT INTO appointment VALUES (%s,%s,%s)',(mail_id,date_appointment,doctor_id))
+                cursor.execute('INSERT INTO appointment VALUES (%s,%s,%s)',(session['mail_id'],date_appointment,doctor_id))
                 conn.commit()
                 msg='successfully booked your appointment!!'
                 return redirect(url_for('index'))
@@ -392,7 +392,7 @@ def doctor_login():
 def doctor_logout():
     session.pop('loggedin', None)
     session.pop('doctor_id', None)
-    return redirect(url_for('doctor_login'))
+    return redirect(url_for('home'))
 
 @app.route('/doctor_register', methods =['GET','POST'])
 
@@ -512,20 +512,29 @@ def pre_patient_record():
         else:
             return render_template("pre_patient_record.html",msg=msg)
     return render_template('doctor_index.html')
+
 @app.route("/rec_appointment",methods=['GET','POST'])
 def rec_appointment():
+    if 'loggedin' in session:
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM appointment WHERE date_appointment = % s', (temp1, ))
+        appointment=cursor.fetchall()
+        return render_template("rec_appointment.html", appointment=appointment)
+    return redirect(url_for('home'))
+
+@app.route("/pre_rec_appointment",methods=['GET','POST'])
+def pre_rec_appointment():
+    msg=" "
     if 'loggedin' in session:
         if request.method=="POST" and 'date_appointment' in request.form:
             conn=mysql.connect
             cursor=conn.cursor()
-            date_appointment = request.form['date_appointment']
-            cursor.execute('SELECT * FROM appointment WHERE date_appointment= % s',(date_appointment))
-            appointment=cursor.fetchall()
-            return render_template("rec_appointment.html",appointment=appointment)
+            date_appointment=request.form['date_appointment']
+            temp1=date_appointment
+            return redirect(url_for('rec_appointment'))
         else:
-            msg='fill the form'
-            return render_template("rec_appointment.html",msg=msg)
-    return redirect(url_for('receptionist_login'))
+            return render_template("pre_rec_appointment.html",msg=msg)
+    return render_template('receptionist_index.html')
 
 @app.route("/doctors_data",methods=['GET','POST'])
 def doctors_data():

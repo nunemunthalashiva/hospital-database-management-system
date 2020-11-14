@@ -11,12 +11,12 @@
                     <h1>records</h1>   <br>
                      {% block content %}
                         <div class="border">
-                        
+
                             <table class="worddark"><br>
                               {% for rec in record %}
-                                    <li>mail_id : {{rec['mail_id']}}</li>
-                                    <li>record_id: {{rec['record_id']}}</li>
-                                    <li>record_analysis : {{rec['record_analysis']}}</li><br>
+                                    <li><b>mail_id    :  {{rec['mail_id']}} </b></li><br>
+                                    <li><b>record_id  :  {{rec['record_id']}} </b></li><br>
+                                    <li><b>record_analysis : {{rec['record_analysis']}} </b></li><br>
                               {% endfor %}
 
                         </div>

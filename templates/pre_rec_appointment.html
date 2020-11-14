@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>appointments</title>
+    <link rel="stylesheet" href="../static/style.css">
+  </head>
+  <body style="background-image:url('../static/hospit.jpg')">
+    <div class="one">
+        <div class="content" align="center">
+        <br>
+            <div class="contentbar">
+    <form action="{{ url_for('rec_appointment')}}" method="post" autocomplete="off">
+    <div class="msg">{{ msg }}</div>
+    <input type="date" name="date_appointment" placeholder="Enter date" class="textbox" required><br><br>
+    <input type="submit" class="btn" value="view-appointments">
+      </form>
+      </div>
+      </div>
+      </div>
+  </body>
+</html>>

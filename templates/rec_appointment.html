@@ -12,14 +12,10 @@
                     <h1>appointments</h1><br>
                      {% block content %}
                         <div class="border">
-                          <form action="{{ url_for('rec_appointment')}}" method="post" autocomplete="off">
-                          <div class="msg">{{ msg }}</div>
-                          <input type="date" name="date_appointment" placeholder="Enter date" class="textbox" required><br><br>
-                          <input type="submit" class="btn" value="view-appointments">
-                            </form>
                             <table class="worddark"><br>
-                              {% for appo in appointent %}
+                              {% for appo in appointment %}
                                     <li>doctor id : {{appo['doctor_id']}}</li>
+                                    <li>student id : {{appo['mail_id']}}</li>
                                     <li>date_appointment: {{appo['date_appointment']}}</li><br>
                               {% endfor %}
                             </table>
