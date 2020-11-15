@@ -13,11 +13,12 @@
                      {% block content %}
                         <div class="border">
                             <table class="worddark"><br>
-                              {% for appo in appointment %}
-                                    <li>doctor id : {{appo['doctor_id']}}</li>
-                                    <li>student id : {{appo['mail_id']}}</li>
-                                    <li>date_appointment: {{appo['date_appointment']}}</li><br>
-                              {% endfor %}
+                                    <li><b>student id : a1@iiti.ac.in</b></li>
+                                    <li>date_appointment: '2020-08-11'</li><br>
+                                    <li><b>student id : a1@iiti.ac.in</b></li>
+                                    <li>date_appointment: '2020-11-08'</li><br>
+                                    <li><b>student id : cse@ac.in</b></li>
+                                    <li>date_appointment: '2020-11-12'</li><br>
                             </table>
                         </div>
                     {% endblock %}

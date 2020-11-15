@@ -157,6 +157,13 @@ def donation():
             conn=mysql.connect
             cursor=conn.cursor()
             donation_id=request.form['donation_id']
+            if(donation_id=='blood'):
+                donation_id='500000'
+            elif(donation_id=='plasma'):
+                donation_id='500001'
+            else:
+                donation_id='500002'
+
             donation_date=request.form['donation_date']
             cursor.execute('SELECT * from donate where mail_id= % s and donation_id= % s and donation_date = % s',(session['mail_id'],donation_id,donation_date))
             donation=cursor.fetchone()
@@ -492,7 +499,8 @@ temp1=0
 
 def patient_record():
     if 'loggedin' in session:
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        conn=mysql.connect
+        cursor=conn.cursor()
         cursor.execute('SELECT * FROM record WHERE mail_id = % s', (temp1, ))
         record=cursor.fetchall()
         return render_template("patient_record.html", record=record)
@@ -512,25 +520,27 @@ def pre_patient_record():
         else:
             return render_template("pre_patient_record.html",msg=msg)
     return render_template('doctor_index.html')
+temp2=0
 
 @app.route("/rec_appointment",methods=['GET','POST'])
 def rec_appointment():
     if 'loggedin' in session:
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM appointment WHERE date_appointment = % s', (temp1, ))
-        appointment=cursor.fetchall()
-        return render_template("rec_appointment.html", appointment=appointment)
+        conn=mysql.connect
+        cursor=conn.cursor()
+        cursor.execute('SELECT * FROM appointment WHERE doctor_id = % s', (temp2,))
+        appoint=cursor.fetchall()
+        return render_template("rec_appointment.html", appoint=appoint)
     return redirect(url_for('home'))
 
 @app.route("/pre_rec_appointment",methods=['GET','POST'])
 def pre_rec_appointment():
     msg=" "
     if 'loggedin' in session:
-        if request.method=="POST" and 'date_appointment' in request.form:
+        if request.method=="POST" and 'doctor_id' in request.form:
             conn=mysql.connect
             cursor=conn.cursor()
-            date_appointment=request.form['date_appointment']
-            temp1=date_appointment
+            doctor_id=request.form['doctor_id']
+            temp2=doctor_id
             return redirect(url_for('rec_appointment'))
         else:
             return render_template("pre_rec_appointment.html",msg=msg)

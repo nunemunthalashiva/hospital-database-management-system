@@ -12,8 +12,12 @@
   <div class="msg">{{msg}}</div>
   <form action="{{url_for('donation')}}" method="POST" autocomplete="OFF">
 
-        <input type="text" name="donation_id" placeholder="enter donation type" class="textbox" required><br>
-
+        <input list='donation' type="text" name="donation_id" placeholder="enter donation type" class="textbox" required>
+    <datalist id='donation'>
+      <option value='blood'>
+      <option value='plasma'>
+      <option value='kidney'>
+    </datalist>
         <input type="date" name="donation_date" placeholder="enter donation_date" class="textbox"  required><br><br>
         <input type="submit" class="btn" value="submit">
   </form>
