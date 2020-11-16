@@ -47,8 +47,8 @@ As you can clearly see its running in localhost I havent deployed it in any web 
  
  Thanks for your intrest in our project :-)
  
- And I am again mentioning this was project in out 3rd sem and we didnt do anything related to security please dont raise any 
- issues if you kind of hack into the database and <b>I am not responsible for the consequences</b>
+ And I am again mentioning this was project in out 3rd sem and we didnt do anything related to <b> extreme security </b> please dont raise any 
+ issues if you kind of hack into the database and <b>I am not responsible for the consequences</b> and this wont be good if you want deploy some security changes will be introduced further :)
           
           
          
