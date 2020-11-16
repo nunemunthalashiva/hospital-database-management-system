@@ -7,11 +7,17 @@ Note : Its just for the sake of project its created we didnt consider some secur
 ## step 1 : First of all clone this repository by executing the command
       git clone https://github.com/nunemunthalashiva/hospital-database-management-system.git
       
-      
+## step 2: Make sure mysql server is running
+       visit this for more details :-)
+       https://dev.mysql.com/doc/mysql-startstop-excerpt/5.5/en/windows-server-first-start.html
       
 As you can clearly see its running in localhost I havent deployed it in any web server so follow these steps
 
 ## step 2 : If you had mysql workbench just follow these instructions(Note: You can also do without workbench there are many tutorials out in the internet please refer it :-)
+           
+         for more details about workbench visit the link below
+         
+         https://dev.mysql.com/doc/workbench/en/
          
          Create a database called 'test' (You can keep anything you want and run the sql query named test.sql)
          
@@ -27,6 +33,10 @@ As you can clearly see its running in localhost I havent deployed it in any web 
          
   
  ## step 3 : There is nothing to do if you follow above steps and one more thing navigate to your directory via terminal or if you use windows navigate via command-prompt and enter the command
+             
+         for installing flask and other dependencies visit here
+         
+         https://flask.palletsprojects.com/en/1.1.x/installation/#installation
          
           "flask run"(without those apphostrophe)
           
