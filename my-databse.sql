@@ -242,13 +242,3 @@ values
   ('101b','kalam'),
   ('505','shivan'),
   ('303','steve');
-select * from specialization;
-select * from patient;
-select * from doctor;
-select * from appointment;
-select * from receptionist;
-select * from rooms;
-select * from bookings;
-select * from record;
-select * from receptionist;
-select * from patient where mail_id="www@ex.vom";
