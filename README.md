@@ -1,4 +1,4 @@
-# hospital-database-management-system
+# hospital-database-management-system (cs207 Project)
 If u would like to deploy it just follow this instructions
 
 Note : Its just for the sake of project its created we didnt consider some security features and if you run some sql injection 
