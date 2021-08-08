@@ -1,8 +1,6 @@
 # hospital-database-management-system (cs207 Project)
 If u would like to deploy it just follow this instructions
 
-Note : Its just for the sake of project its created we didnt consider some security features and if you run some sql injection 
-       kind of things it may go wrong so I am not the one responsible for happening any thing
 
 ## step 1 : First of all clone this repository by executing the command
       git clone https://github.com/nunemunthalashiva/hospital-database-management-system.git
@@ -46,9 +44,7 @@ As you can clearly see its running in localhost I havent deployed it in any web 
  ### images are just brought from web if you feel offended or if it was yours please raise an issue we will be immediately removing it 
  
  Thanks for your intrest in our project :-)
- 
- And I am again mentioning this was project in out 3rd sem and we didnt do anything related to <b> extreme security </b> please dont raise any 
- issues if you kind of hack into the database and <b>I am not responsible for the consequences</b> and this wont be good if you want deploy some security changes will be introduced further :)
+
           
           
          
